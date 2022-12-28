@@ -7,12 +7,18 @@ import { DecoManifest } from "$live/types.ts";
 import * as $0 from "./routes/[...catchall].tsx";
 import * as $1 from "./routes/_app.tsx";
 import * as $2 from "./routes/_middleware.ts";
-import * as $3 from "./routes/index.tsx";
+import * as $3 from "./routes/ecommerce.tsx";
+import * as $4 from "./routes/index.tsx";
+import * as $5 from "./routes/marketing-digital.tsx";
 import * as $$0 from "./islands/LiveControls.tsx";
-import * as $$$0 from "./sections/GetStarted.tsx";
-import * as $$$1 from "./sections/Head.tsx";
-import * as $$$2 from "./sections/Markdown.tsx";
-import * as $$$3 from "./sections/QuillText.tsx";
+import * as $$$0 from "./sections/Cards.tsx";
+import * as $$$1 from "./sections/GetStarted.tsx";
+import * as $$$2 from "./sections/Head.tsx";
+import * as $$$3 from "./sections/Header.tsx";
+import * as $$$4 from "./sections/Hero.tsx";
+import * as $$$5 from "./sections/Markdown.tsx";
+import * as $$$6 from "./sections/QuillText.tsx";
+import * as $$$7 from "./sections/Topbar.tsx";
 import * as $$$$0 from "./functions/LoadGitHubRaw.ts";
 
 const manifest: DecoManifest = {
@@ -20,17 +26,68 @@ const manifest: DecoManifest = {
     "./routes/[...catchall].tsx": $0,
     "./routes/_app.tsx": $1,
     "./routes/_middleware.ts": $2,
-    "./routes/index.tsx": $3,
+    "./routes/ecommerce.tsx": $3,
+    "./routes/index.tsx": $4,
+    "./routes/marketing-digital.tsx": $5,
   },
   islands: { "./islands/LiveControls.tsx": $$0 },
   sections: {
-    "./sections/GetStarted.tsx": $$$0,
-    "./sections/Head.tsx": $$$1,
-    "./sections/Markdown.tsx": $$$2,
-    "./sections/QuillText.tsx": $$$3,
+    "./sections/Cards.tsx": $$$0,
+    "./sections/GetStarted.tsx": $$$1,
+    "./sections/Head.tsx": $$$2,
+    "./sections/Header.tsx": $$$3,
+    "./sections/Hero.tsx": $$$4,
+    "./sections/Markdown.tsx": $$$5,
+    "./sections/QuillText.tsx": $$$6,
+    "./sections/Topbar.tsx": $$$7,
   },
   functions: { "./functions/LoadGitHubRaw.ts": $$$$0 },
   schemas: {
+    "./sections/Cards.tsx": {
+      "inputSchema": {
+        "title": " Cards",
+        "type": "object",
+        "properties": {
+          "products": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Title",
+                },
+                "list": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "title": "Title",
+                      },
+                    },
+                    "required": [
+                      "title",
+                    ],
+                  },
+                  "title": "List",
+                },
+              },
+              "required": [
+                "title",
+                "list",
+              ],
+            },
+            "title": "Products",
+          },
+        },
+        "required": [
+          "products",
+        ],
+      },
+      "outputSchema": null,
+    },
     "./sections/GetStarted.tsx": {
       "inputSchema": {
         "title": " Get Started",
@@ -97,6 +154,99 @@ const manifest: DecoManifest = {
       },
       "outputSchema": null,
     },
+    "./sections/Header.tsx": {
+      "inputSchema": {
+        "title": " Header",
+        "type": "object",
+        "properties": {
+          "logo": {
+            "type": "string",
+            "title": "Logo",
+          },
+          "menu": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "title": "Text",
+                },
+                "link": {
+                  "type": [
+                    "string",
+                    "null",
+                  ],
+                  "title": "Link",
+                },
+              },
+              "required": [
+                "text",
+              ],
+            },
+            "title": "Menu",
+          },
+          "button": {
+            "title": "Button",
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "title": "Text",
+              },
+              "link": {
+                "type": [
+                  "string",
+                  "null",
+                ],
+                "title": "Link",
+              },
+            },
+            "required": [
+              "text",
+            ],
+          },
+        },
+        "required": [
+          "logo",
+          "menu",
+          "button",
+        ],
+      },
+      "outputSchema": null,
+    },
+    "./sections/Hero.tsx": {
+      "inputSchema": {
+        "title": " Hero",
+        "type": "object",
+        "properties": {
+          "titleH1": {
+            "type": "string",
+            "title": "Title H1",
+          },
+          "titleH2": {
+            "type": "string",
+            "title": "Title H2",
+          },
+          "textSEO": {
+            "type": "string",
+            "title": "Text S E O",
+          },
+          "backgroundImage": {
+            "format": "image-uri",
+            "type": "string",
+            "title": "Background Image",
+          },
+        },
+        "required": [
+          "titleH1",
+          "titleH2",
+          "textSEO",
+          "backgroundImage",
+        ],
+      },
+      "outputSchema": null,
+    },
     "./sections/Markdown.tsx": {
       "inputSchema": {
         "title": " Markdown",
@@ -128,6 +278,39 @@ const manifest: DecoManifest = {
         },
         "required": [
           "html",
+        ],
+      },
+      "outputSchema": null,
+    },
+    "./sections/Topbar.tsx": {
+      "inputSchema": {
+        "title": " Topbar",
+        "type": "object",
+        "properties": {
+          "links": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "phone": {
+                  "type": "string",
+                  "title": "Phone",
+                },
+                "link": {
+                  "type": "string",
+                  "title": "Link",
+                },
+              },
+              "required": [
+                "phone",
+                "link",
+              ],
+            },
+            "title": "Links",
+          },
+        },
+        "required": [
+          "links",
         ],
       },
       "outputSchema": null,
